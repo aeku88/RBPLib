@@ -1,4 +1,5 @@
 #include "api/chassis/kinematics/chassisKinematics.hpp"
+#include "api/units.h"
 
 namespace rbplib
 {
@@ -33,24 +34,18 @@ namespace rbplib
 
     Eigen::Vector2<revolutions_per_minute_t> ChassisKinematics::inverseKinematics(const std::pair<feet_per_second_t, radians_per_second_t> ichassisVelocities)
     {
-        auto linVel = ichassisVelocities.first;
+        feet_per_second_t linVel = ichassisVelocities.first;
         radians_per_second_t angVel = ichassisVelocities.second;
 
         radians_per_second_t leftVel = (linVel * 1_rad + (trackWidth / 2) * angVel) / (wheelDiameter / 2); // Multiplied linear velocity by 1 radian to match units match; in units library, angle has dimension.
         radians_per_second_t rightVel = (linVel * 1_rad - (trackWidth / 2) * angVel) / (wheelDiameter / 2);
 
-        if (math::abs(leftVel) > maxMotorVel)
-        {
-            auto difference = leftVel - rightVel;
-            leftVel = sgn(leftVel.value()) * maxMotorVel;
-            rightVel = leftVel - difference;
-        }
+        radians_per_second_t fasterSide = math::max(math::fabs(leftVel), math::fabs(rightVel));
 
-        else if (math::abs(rightVel) > maxMotorVel)
+        if (fasterSide > maxMotorVel) 
         {
-            auto difference = rightVel - leftVel;
-            rightVel = sgn(rightVel.value()) * maxMotorVel;
-            leftVel = rightVel - difference;
+            leftVel *= (maxMotorVel / fasterSide);
+            rightVel *= (maxMotorVel / fasterSide);
         }
 
         return {leftVel, rightVel};

@@ -23,6 +23,7 @@ namespace rbplib
 
         const auto poseDiff = odomMathStep(tickDiff);
         pose += poseDiff;
+        
         std::cout << "x: " << pose[0] << '\n';
         std::cout << "y: " << pose[1] << '\n';
         std::cout << "theta: " << pose[2] * 180/M_PI << '\n';

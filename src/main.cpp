@@ -93,8 +93,8 @@ void opcontrol()
 		auto angVel = master.get_analog(ANALOG_RIGHT_X) / 127.0 * MAX_ANG_SPEED;
 		auto linVel = master.get_analog(ANALOG_LEFT_Y) / 127.0 * MAX_LIN_SPEED;
 
-		chassis.model->driveMotors(chassis.kinematics->inverseKinematics({linVel, angVel})[0], 
-								 chassis.kinematics->inverseKinematics({linVel, angVel})[1]);
+		chassis.model->drive(chassis.kinematics->inverseKinematics({linVel, angVel})[0], 
+							chassis.kinematics->inverseKinematics({linVel, angVel})[1]);
 		chassis.odometry->step();
 		pros::delay(10);
 	}
