@@ -8,7 +8,8 @@
  * When this callback is fired, it will toggle line 2 of the LCD text between
  * "I was pressed!" and nothing.
  */
-void on_center_button() {
+void on_center_button() 
+{
 	static bool pressed = false;
 	pressed = !pressed;
 	if (pressed) {
@@ -24,7 +25,8 @@ void on_center_button() {
  * All other competition modes are blocked by initialize; it is recommended
  * to keep execution time for this mode under a few seconds.
  */
-void initialize() {
+void initialize() 
+{
 	pros::lcd::initialize();
 	pros::lcd::set_text(1, "Hello PROS User!");
 
@@ -80,13 +82,15 @@ void opcontrol()
 {
 	pros::Controller master(pros::E_CONTROLLER_MASTER);
 
-	pros::MotorGroup intake{5, -6};
-
-	pros::MotorGroup left {-1, -2}, right {3, 4};
+	/*pros::MotorGroup left {-1, -2}, right {3, 4};
 
 	pros::Rotation middle {11};
 	
-	auto chassis = ChassisController(left, right, middle, 3.25_in, 8.75_in);
+	auto chassis = ChassisController(left, 
+													   right, 
+													  middle, 
+											    3.25_in, 
+												   8.75_in);
 
 	while (true) 
 	{
@@ -96,6 +100,7 @@ void opcontrol()
 		chassis.model->drive(chassis.kinematics->inverseKinematics({linVel, angVel})[0], 
 							chassis.kinematics->inverseKinematics({linVel, angVel})[1]);
 		chassis.odometry->step();
+
 		pros::delay(10);
-	}
+	}*/
 }

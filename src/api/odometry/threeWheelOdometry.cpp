@@ -1,17 +1,12 @@
 #include "api/odometry/threeWheelOdometry.hpp"
 #include <math.h>
 
-namespace rbplib
+namespace tekuaek
 {
     ThreeWheelOdometry::ThreeWheelOdometry(const std::shared_ptr<ChassisModel> &imodel)
     : model(std::move(imodel))
     {
         pose = {0, 0, 0};
-    }
-
-    Eigen::Vector3d ThreeWheelOdometry::getPose() const
-    {
-        return pose;
     }
 
     void ThreeWheelOdometry::step()
@@ -41,10 +36,14 @@ namespace rbplib
             (deltaTheta * 2.6875
         ));
 
-        if (deltaL == deltaR) {
+        if (deltaL == deltaR) 
+        {
             localOffX = deltaM;
             localOffY = deltaR;
-        } else {
+        } 
+        
+        else 
+        {
             localOffX = 2 * std::sin(deltaTheta / 2) *
                         (deltaM / deltaTheta + 4.125);
             localOffY = 2 * std::sin(deltaTheta / 2) *
@@ -59,17 +58,15 @@ namespace rbplib
         double dX = std::sin(polarA) * polarR;
         double dY = std::cos(polarA) * polarR;
 
-        if (isnan(dX)) {
+        if (isnan(dX))
             dX = 0;
-        }
 
-        if (isnan(dY)) {
+        if (isnan(dY))
             dY = 0;
-        }
 
-        if (isnan(deltaTheta)) {
+        if (isnan(deltaTheta))
             deltaTheta = 0;
-        }
+
         return {dX, dY, deltaTheta};
     }
 }

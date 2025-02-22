@@ -1,17 +1,18 @@
 #include "api/chassis/control/chassisController.hpp"
 
-namespace rbplib
+namespace tekuaek
 {
     ChassisController::ChassisController(pros::MotorGroup &ileft,
                                          pros::MotorGroup &iright,
                                          pros::Rotation &imiddle,
-                                         const inch_t &iwheelDiameter,
-                                         const inch_t &iwheelTrack)
+                                         std::shared_ptr<ChassisConfiguration> &iconfig)
     {
-        model = std::make_shared<ChassisModel>(ileft, iright, imiddle);
-        kinematics = std::make_shared<ChassisKinematics>(ileft.get_gearing(), iwheelDiameter, iwheelTrack);
+        model = std::make_shared<ChassisModel>(ileft, iright, imiddle, iconfig);
+        kinematics = std::make_shared<ChassisKinematics>(iconfig);
         odometry = std::make_shared<ThreeWheelOdometry>(model);
     }
 
-
+    void ChassisController::arcade(const double throttle, const double steer)
+    {
+    }
 }

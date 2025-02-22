@@ -53,7 +53,7 @@
 // using namespace pros;
 // using namespace pros::literals;
 // using namespace okapi;
-using namespace rbplib;
+using namespace tekuaek;
 
 /**
  * Prototypes for the competition control tasks are redefined here to ensure
