@@ -4,7 +4,7 @@
 #include "api/chassis/model/chassisModel.hpp"
 #include "api.h"
 
-namespace tekuaek
+namespace rbplib
 {
     class ThreeWheelOdometry : public Odometry
     {

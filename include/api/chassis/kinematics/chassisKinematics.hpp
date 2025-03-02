@@ -14,7 +14,7 @@ using namespace units::velocity;
 using namespace units::angular_velocity;
 
 
-namespace tekuaek
+namespace rbplib
 {
     class ChassisKinematics
     {

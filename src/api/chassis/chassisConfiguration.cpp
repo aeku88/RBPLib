@@ -1,6 +1,6 @@
 #include "api/chassis/chassisConfiguration.hpp"
 
-namespace tekuaek 
+namespace rbplib 
 {
     ChassisConfiguration::ChassisConfiguration(const inch_t iwheelDiameter,
                                                const inch_t itrackWidth,

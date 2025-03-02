@@ -1,7 +1,7 @@
 #include "api/chassis/kinematics/chassisKinematics.hpp"
 #include "api/units.h"
 
-namespace tekuaek
+namespace rbplib
 {
     ChassisKinematics::ChassisKinematics(std::shared_ptr<ChassisConfiguration> &iconfig)
     : config(iconfig)

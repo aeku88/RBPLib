@@ -15,7 +15,7 @@ using namespace units::velocity;
 using namespace units::angle;
 using namespace units::angular_velocity;
 
-namespace tekuaek
+namespace rbplib
 {
     class ChassisController
     {
@@ -29,7 +29,9 @@ namespace tekuaek
 
         void moveToPose(const Eigen::Vector2<inch_t> &ipoint, const degree_t &iangle, const bool ibackwards);
 
-        void arcade(const double throttle, const double steer);
+        void arcade(const double throttle, const double steer) const;
+
+        void tank(const double leftThrottle, const double rightThrottle) const;
 
         std::shared_ptr<ChassisKinematics> kinematics;
         std::shared_ptr<ChassisModel> model;

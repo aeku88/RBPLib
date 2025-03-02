@@ -1,7 +1,7 @@
 #include "api/odometry/threeWheelOdometry.hpp"
 #include <math.h>
 
-namespace tekuaek
+namespace rbplib
 {
     ThreeWheelOdometry::ThreeWheelOdometry(const std::shared_ptr<ChassisModel> &imodel)
     : model(std::move(imodel))

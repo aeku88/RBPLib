@@ -11,7 +11,7 @@ using namespace units::literals;
 using namespace units::length;
 using namespace units::angle;
 
-namespace tekuaek
+namespace rbplib
 {
     class Odometry
     {
